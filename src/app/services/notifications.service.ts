@@ -1,23 +1,29 @@
-import { Injectable } from '@angular/core';
+import { Injectable, } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationsService {
-  constructor() { }
+  nState: boolean = false;
+  nStateFalse: any;
+  nContentSuccess = "Mission accomplished!";
+  nContentFail = "An error occurred. Mission abort!";
+  
 
-  editProductNotif(mess: boolean){
-    mess = true;
-    // setTimeout(()=>{mess = false}, 5000);
-    console.log("test");
-    return mess;
+  constructor() { 
+    this.nStateFalse = setTimeout(() => {
+      this.nState = false; console.log("test", this.nState);
+    }, 6000); 
   }
 
-  deleteProductNotif(){
+  saveChangesNotifOK(nState: boolean) {
 
+    nState = true;
+
+    this.nStateFalse;
+    console.log(this.nStateFalse)
+
+    return nState;
   }
 
-  addProductNotif(){
-
-  }
 }

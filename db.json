@@ -36,10 +36,10 @@
       "id": 5
     },
     {
-      "name": "Future Martian Onesie",
+      "name": "Future Martian Onesie test",
       "description": "Intended For Tiny Humans\nHigh Quality Screen Print\n90% Airlume combed and ring-spun cotton, 10% poly",
       "image": "./assets/images/FutureMartianOnesie_540x.webp",
-      "price": 17.99,
+      "price": 17.94,
       "id": 6
     }
   ]

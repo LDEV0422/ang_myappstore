@@ -30,8 +30,10 @@
                   <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                     data-bs-target="#editModal" (click)="createNewProdData()">EDIT <i
                       class="fa-solid fa-pen"></i></button>
+                      <!-- open edit modal = pass data, pass event on click save/cancel changes -->
                   <app-editmodal [editProductData]="newProductData" [routeId]="id"
-                    (cancelEditProductEvent)="viewOldProduct($event)"></app-editmodal>
+                    (cancelEditProductEvent)="viewOldProduct($event)" (saveChangesEventOK)="saveChangesNotifOK()" (saveChangesEventERR)="saveChangesNotifERR()">
+                  </app-editmodal>
                   <!-- open delete modal -->
                   <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                     data-bs-target="#deleteModal">DELETE <i class="fa-solid fa-trash-can"></i></button>
@@ -40,11 +42,19 @@
               </div>
               <!-- End Action Buttons -->
 
+              <!-- Notification Message -->
+              <div id="notifBadge" class="badge notif text-white" *ngIf="notifState"
+               [ngClass]="notifContent === notificationsService.nContentSuccess? 'bg-success' : 'bg-danger'">
+                <p [innerHTML]="notifContent" class="m-3"></p>
+              </div>
+              <!-- End Notification Message -->
+
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- End Product Card -->
+    
   </div>
 </main>
