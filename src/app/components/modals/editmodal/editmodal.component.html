@@ -1,0 +1,44 @@
+<!-- EDIT Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Notification Message -->
+      <div *ngIf="notifState" class="btn btn-success">
+        <p>Message à afficher</p>
+      </div>
+      <!-- End Notification Message -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit {{ editProductData.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="editProduct()" #product="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]="editProductData.name" required
+              maxlength="60" placeholder="Nom Du Produit - Type De Produit">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description" cols="30" rows="5" class="form-control"
+              [(ngModel)]="editProductData.description" required maxlength="200"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Image</label>
+            <!-- we can't use input type file because we're using json to store data -->
+            <input type="text" name="image" class="form-control" [(ngModel)]="editProductData.image" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input type="number" name="price" class="form-control" [(ngModel)]="editProductData.price" required>
+          </div>
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Save changes</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="cancelEdit(oldProductData)">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

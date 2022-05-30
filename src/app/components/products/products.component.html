@@ -1,0 +1,40 @@
+<main>
+  <!-- SHOW ALL PRODUCTS -->
+  <!-- on click on view product button, hide all products -->
+  <div class="showAllProducts" id="allProdsSection">
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">Our Products</h1>
+        <button class="btn btn-warning p-3 m-4 fw-bold" routerLink="/addproduct">Add a product</button>
+      </div>
+    </div>
+    <!-- Card Loop -->
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <!-- put ngFor directive on the element that should be duplicated -->
+          <div class="col" *ngFor="let p of products">
+            <div class="card shadow-sm h-100">
+              <img src="{{p.image}}" class="card-img-top img-fluid" alt="product image">
+              <div class="card-body">
+                <p class="card-title lead">{{p.name}}</p>
+                <p class="card-text text-muted small">{{p.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <!-- view product method with product id as parameter -->
+                    <a routerLink="/viewproduct/{{p.id}}" class="btn btn-sm btn-outline-secondary text-dark fw-bold">View</a>
+                    <button type="button" class="btn btn-sm btn-success"><i class="fa-solid fa-cart-plus"></i></button>
+                  </div>
+                  <small class="text-muted">&euro; {{p.price}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Card Loop -->
+
+  </div>
+</main>

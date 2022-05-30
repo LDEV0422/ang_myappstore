@@ -1,0 +1,46 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Keep Exploring - Poster",
+      "description": "Professional Photo Print on Semi Glossy Photo Paper. Dimensions = 200mm x 200mm [8\" x 8\"]",
+      "image": "./assets/images/Keepexploringmain_540x.webp",
+      "price": 13
+    },
+    {
+      "id": 2,
+      "name": "Wait I'm Late For My Ride - Poster",
+      "description": "Professional Photo Print on Semi Glossy Photo Paper. Dimensions = 200mm x 200mm [8\" x 8\"]",
+      "image": "./assets/images/WaitImlatemain_540x.webp",
+      "price": 17.99
+    },
+    {
+      "id": 3,
+      "name": "Guitar - Poster",
+      "description": "Professional Photo Print on Semi Glossy Photo Paper. Dimensions = 200mm x 200mm [8\" x 8\"]",
+      "image": "./assets/images/Guitarmain_540x.webp",
+      "price": 15.99
+    },
+    {
+      "name": "Test product 1",
+      "description": "This is a test for my edition method!",
+      "image": "./assets/images/Guitarmain_540x.webp",
+      "price": 47,
+      "id": 4
+    },
+    {
+      "name": "Full Flow Staged Combustion Cycle - T-shirt",
+      "description": "Unisex Style \nCustom Neck Label\nSew On Tag with \"FULL FLOW STAGED COMBUSTION CYCLE\"\nHigh Quality Screen Print\n100% Comfortable Ringspun Cotton",
+      "image": "./assets/images/FFStagedCombustCycle_Tee_540x.webp",
+      "price": 31.99,
+      "id": 5
+    },
+    {
+      "name": "Future Martian Onesie",
+      "description": "Intended For Tiny Humans\nHigh Quality Screen Print\n90% Airlume combed and ring-spun cotton, 10% poly",
+      "image": "./assets/images/FutureMartianOnesie_540x.webp",
+      "price": 17.99,
+      "id": 6
+    }
+  ]
+}

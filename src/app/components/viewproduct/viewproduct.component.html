@@ -1,0 +1,50 @@
+<!-- SHOW ONE PRODUCT USING ID -->
+<main>
+  <div class="viewProduct" *ngIf="productData">
+    <!-- Banner Product Name -->
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">{{ productData.name }}</h1>
+      </div>
+      <a routerLink="/products" class="btn btn-sm btn-warning float-end m-3 fw-bold">Back to products</a>
+    </div>
+    <!-- End Banner Product Name -->
+
+    <!-- Product Card -->
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-5 mx-auto">
+            <div class="card shadow-sm h-100">
+              <img src="{{ productData.image }}" class="card-img-top img-fluid" alt="product image">
+              <div class="card-body">
+                <p class="card-title lead">{{ productData.name }}</p>
+                <p class="card-text text-muted small">{{ productData.description }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="text-muted fw-bold">&euro; {{ productData.price }}</p>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="btn-group my-3 float-end" role="group">
+                  <!-- open edit modal -->
+                  <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#editModal" (click)="createNewProdData()">EDIT <i
+                      class="fa-solid fa-pen"></i></button>
+                  <app-editmodal [editProductData]="newProductData" [routeId]="id"
+                    (cancelEditProductEvent)="viewOldProduct($event)"></app-editmodal>
+                  <!-- open delete modal -->
+                  <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#deleteModal">DELETE <i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <app-deletemodal [deleteProductData]="productData"></app-deletemodal>
+              </div>
+              <!-- End Action Buttons -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Product Card -->
+  </div>
+</main>
