@@ -52,17 +52,15 @@ export class LoginComponent implements OnInit {
     // check username and password
     for (let i = 0; i < this.users.length; i++) {
       // console.log(this.users[i]);
+
+      // TODO: check only username or email (unique) instead of all users
       if (this.form.get('username')?.value === this.users[i].username && this.form.get('password')?.value === this.users[i].password) {
 
         // if user exists TODO: erase this
-        console.log("User exists: " + this.users[i].username + " with token " + this.users[i].token);
+        // console.log("User exists: " + this.users[i].username + " with token " + this.users[i].token);
 
-        // authService method = loggedIn state
-        this.authService.loggedIn();
-
-        // put token in localStorage
-        let userAuth = `${this.users[i].username}_auth`;
-        localStorage.setItem(userAuth, this.users[i].token);
+        // authService method = loggedIn state + store user token in localStorage
+        this.authService.loggedIn(this.users[i].username, this.users[i].token);
 
         // redirect to dashboard
         this.router.navigate(['/dashboard']);
