@@ -62,5 +62,21 @@
     "Apparel",
     "Tiny Human",
     "Accessories"
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Tybalt",
+      "password": "303030",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJUeWJhbHQiLCJwYXNzd29yZCI6IjMwMzAzMCIsInJvbGVzIjoiQURNSU4ifQ.5IUCiMB9G_44YOGrWY67hgAgfJ61Hu-3xqmojRf5puo",
+      "roles": "ADMIN"
+    },
+    {
+      "id": 2,
+      "username": "Mars",
+      "password": "898989",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJNYXJzIiwicGFzc3dvcmQiOiI4OTg5ODkiLCJyb2xlcyI6IlVTRVIifQ.OacDmNbONt_ceXbfJ53gabCF1L9GpYjCN0Zr7JMGit8",
+      "roles": "USER"
+    }
   ]
 }

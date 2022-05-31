@@ -11,11 +11,13 @@ import { AddproductComponent } from './components/addproduct/addproduct.componen
 import { ViewproductComponent } from './components/viewproduct/viewproduct.component';
 
 // ********** forms module ********** //
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeletemodalComponent } from './components/modals/deletemodal/deletemodal.component';
 import { EditmodalComponent } from './components/modals/editmodal/editmodal.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,16 @@ import { FooterComponent } from './components/footer/footer.component';
     DeletemodalComponent,
     EditmodalComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
