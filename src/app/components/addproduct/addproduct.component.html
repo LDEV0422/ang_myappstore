@@ -24,6 +24,13 @@
             <label class="form-label">Price</label>
             <input type="number" name="price" class="form-control" ngModel required>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select name="category" class="form-select form-control" aria-label="Default select example" ngModel required>
+              <option selected>Choose a category</option>
+              <option value="{{c}}" *ngFor="let c of categories">{{c}}</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-success">Save product</button>
     </form>
   </div>

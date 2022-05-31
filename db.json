@@ -5,42 +5,62 @@
       "name": "Keep Exploring - Poster",
       "description": "Professional Photo Print on Semi Glossy Photo Paper. Dimensions = 200mm x 200mm [8\" x 8\"]",
       "image": "./assets/images/Keepexploringmain_540x.webp",
-      "price": 13
+      "price": 13,
+      "category": "Prints"
     },
     {
       "id": 2,
       "name": "Wait I'm Late For My Ride - Poster",
       "description": "Professional Photo Print on Semi Glossy Photo Paper. Dimensions = 200mm x 200mm [8\" x 8\"]",
       "image": "./assets/images/WaitImlatemain_540x.webp",
-      "price": 17.99
+      "price": 17.99,
+      "category": "Prints"
     },
     {
       "id": 3,
       "name": "Guitar - Poster",
       "description": "Professional Photo Print on Semi Glossy Photo Paper. Dimensions = 200mm x 200mm [8\" x 8\"]",
       "image": "./assets/images/Guitarmain_540x.webp",
-      "price": 15.99
+      "price": 15.99,
+      "category": "Prints"
     },
     {
       "name": "Test product 1",
       "description": "This is a test for my edition method!",
       "image": "./assets/images/Guitarmain_540x.webp",
       "price": 47,
-      "id": 4
+      "id": 4,
+      "category": "Prints"
     },
     {
       "name": "Full Flow Staged Combustion Cycle - T-shirt",
       "description": "Unisex Style \nCustom Neck Label\nSew On Tag with \"FULL FLOW STAGED COMBUSTION CYCLE\"\nHigh Quality Screen Print\n100% Comfortable Ringspun Cotton",
       "image": "./assets/images/FFStagedCombustCycle_Tee_540x.webp",
       "price": 31.99,
-      "id": 5
+      "id": 5,
+      "category": "Apparel"
     },
     {
       "name": "Future Martian Onesie test",
       "description": "Intended For Tiny Humans\nHigh Quality Screen Print\n90% Airlume combed and ring-spun cotton, 10% poly",
       "image": "./assets/images/FutureMartianOnesie_540x.webp",
-      "price": 17.94,
-      "id": 6
+      "price": 17.99,
+      "id": 6,
+      "category": "Tiny Human"
+    },
+    {
+      "name": "Moon Restaurant - Poster",
+      "description": "A great poster representing a foodie in space.",
+      "image": "./assets/images/MoonRestaurantMain_540x.webp",
+      "price": 16,
+      "category": "Prints",
+      "id": 7
     }
+  ],
+  "categories": [
+    "Prints",
+    "Apparel",
+    "Tiny Human",
+    "Accessories"
   ]
 }
