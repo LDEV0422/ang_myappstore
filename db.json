@@ -68,14 +68,16 @@
       "id": 1,
       "username": "Tybalt",
       "password": "303030",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJUeWJhbHQiLCJwYXNzd29yZCI6IjMwMzAzMCIsInJvbGVzIjoiQURNSU4ifQ.5IUCiMB9G_44YOGrWY67hgAgfJ61Hu-3xqmojRf5puo",
+      "email": "tyb-buy@jmal.com",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJUeWJhbHQiLCJlbWFpbCI6InR5Yi1idXlAam1hbC5jb20iLCJyb2xlcyI6IkFETUlOIn0.oUw-Z5pZm842nTiacSJQE-Ifnju2Zcn80AgMrgwvQ-4",
       "roles": "ADMIN"
     },
     {
       "id": 2,
       "username": "Mars",
       "password": "898989",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJNYXJzIiwicGFzc3dvcmQiOiI4OTg5ODkiLCJyb2xlcyI6IlVTRVIifQ.OacDmNbONt_ceXbfJ53gabCF1L9GpYjCN0Zr7JMGit8",
+      "email": "mars-pro@jmal.com",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJNYXJzIiwiZW1haWwiOiJtYXJzLXByb0BqbWFsLmNvbSIsInJvbGVzIjoiVVNFUiJ9.OfMtFZiK2c-62R4POEXAAkyYxoIABPWjWGBmFI8QLus",
       "roles": "USER"
     }
   ]
