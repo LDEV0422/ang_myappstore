@@ -68,9 +68,6 @@ export class ViewproductComponent implements OnInit {
   saveChangesNotifOK() {
     this.notifContent = this.notificationsService.nContentSuccess;
     this.notifState = this.notificationsService.saveChangesNotifOK(this.notifState);
-     
-    
-   
   }
 
   // show notification if update is ERROR

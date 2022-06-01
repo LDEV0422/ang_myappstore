@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
 
   form = new FormGroup({
-    username: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required)
   });
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     // if form is invalid (empty inputs), early exit
     if (this.form.invalid) {
       this.errorState = true;
-      this.errorMessage = "Please indicate username and password"
+      this.errorMessage = "Please indicate email and password"
       return;
     }
 
@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
       // console.log(this.users[i]);
 
       // TODO: check only username or email (unique) instead of all users
-      if (this.form.get('username')?.value === this.users[i].username && this.form.get('password')?.value === this.users[i].password) {
+      if (this.form.get('email')?.value === this.users[i].email && this.form.get('password')?.value === this.users[i].password) {
 
         // if user exists TODO: erase this
-        // console.log("User exists: " + this.users[i].username + " with token " + this.users[i].token);
+        // console.log("User exists: " + this.users[i].email + " with token " + this.users[i].token);
 
         // authService method = loggedIn state + store user token in localStorage
         this.authService.loggedIn(this.users[i].username, this.users[i].token);
