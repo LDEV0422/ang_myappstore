@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -14,16 +15,26 @@ export class ProductsComponent implements OnInit {
   productData: any;
 
   // search form
-  form = new FormGroup({
+  searchForm = new FormGroup({
     search: new FormControl(null, Validators.required),
+  });
+
+  // price range form
+  priceForm = new FormGroup({
+    minPrice: new FormControl(null, Validators.required),
+    maxPrice: new FormControl(null, Validators.required),
   });
 
   // error message
   errorState: boolean = false;
-  errorMessage!: string;
+  errorMessageSearch!: string;
+  errorMessagePrice!: string;
+
+  // categories filter
+  categories!: string[];
 
   // inject service to use its methods
-  constructor(private productService: ProductService, public authService: AuthService) { }
+  constructor(private productService: ProductService, private categoriesService: CategoriesService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.getAllProducts()
@@ -38,35 +49,40 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-
+// ********** FILTERS ********** //
   // search products 
   searchProduct() {
 
     // if form is empty
-    if (this.form.invalid) {
+    if (this.searchForm.invalid) {
+
       this.errorState = true;
-      this.errorMessage = "Please indicate your request";
+      this.errorMessageSearch = "Please indicate your request";
+
+      // show all products if form is empty
+      this.getAllProducts();
+
       return;
     }else{
       this.errorState = false;
     }
 
     // search by product name (like)
-    this.productService.searchProduct(this.form.get('search')?.value)
+    this.productService.searchProduct(this.searchForm.get('search')?.value)
       .subscribe({
         next: (response) => {
           this.products = response;
           console.log(this.products);
           if (response.length == 0) {
             this.errorState = true;
-            this.errorMessage = "No product found";
+            this.errorMessageSearch = "No product found";
           } else{
             this.errorState = false;
           }
         },
         error: () => {
           this.errorState = true;
-          this.errorMessage = "No product found";
+          this.errorMessageSearch = "No product found";
         }
       })
   }
@@ -85,5 +101,65 @@ export class ProductsComponent implements OnInit {
       this.products = response;
     })
   }
+
+  // price range
+  priceRange(){
+    // if form is empty
+    if (this.priceForm.invalid) {
+
+      this.errorState = true;
+      this.errorMessagePrice = "Please indicate a price range";
+
+      // show all products if form is empty
+      this.getAllProducts();
+
+      return;
+    }else{
+      this.errorState = false;
+    }
+
+    // filter by price range (min / max)
+    this.productService.priceRange(this.priceForm.get('minPrice')?.value, this.priceForm.get('maxPrice')?.value)
+      .subscribe({
+        next: (response) => {
+          this.products = response;
+          
+          if (response.length == 0) {
+            this.errorState = true;
+            this.errorMessagePrice = "No product found in this price range";
+          } else{
+            this.errorState = false;
+          }
+        },
+        error: () => {
+          this.errorState = true;
+          this.errorMessagePrice = "No product found";
+        }
+      })
+  }
+
+  filterCategory(){
+    this.categoriesService.getCategories()
+    .subscribe({
+      next: (response) => {
+        this.categories = response;
+        console.log(this.categories);
+        
+        // if (response.length == 0) {
+        //   this.errorState = true;
+        //   this.errorMessagePrice = "No product found in this price range";
+        // } else{
+        //   this.errorState = false;
+        // }
+      },
+      error: () => {
+        // this.errorState = true;
+        // this.errorMessagePrice = "No product found";
+      }
+    })
+  }
+
+// ********** END FILTERS ********** //
+
 
 }

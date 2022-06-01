@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'viewproduct/:id', component: ViewproductComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  // { path: '**', component: HomeComponent } // If no matching route found, go back to home
+  { path: '**', component: HomeComponent } // If no matching route found, go back to home
 ];
 
 @NgModule({

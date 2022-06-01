@@ -13,7 +13,7 @@
 
         <!-- Products Search Bar -->
         <div class="container mt-5">
-          <form class="d-flex" role="search" (ngSubmit)="searchProduct()" [formGroup]="form" autocomplete="off">
+          <form class="d-flex" role="search" (ngSubmit)="searchProduct()" [formGroup]="searchForm" autocomplete="off">
 
             <input class="form-control me-2" type="search" placeholder="Search a product" aria-label="Search"
               name="search" formControlName="search">
@@ -23,7 +23,7 @@
 
           <!-- Error Message -->
           <div class="errorMessage my-3" *ngIf="errorState">
-            <p class="text-danger fw-bold">{{ errorMessage }}</p>
+            <p class="text-danger fw-bold">{{ errorMessageSearch }}</p>
           </div>
         </div>
 
@@ -34,8 +34,9 @@
 
       <!-- FILTERS -->
       <div class="container text-center my-5">
-        <div class="btn-group" role="group" aria-label="Filters">
 
+        <!-- PRICE -->
+        <div class="btn-group" role="group" aria-label="Filters">
           <!-- sort by price asc -->
           <button type="button" class="btn btn-outline-secondary" (click)="priceSortAsc()">Price <i
               class="fa-solid fa-arrow-up-short-wide"></i></button>
@@ -43,10 +44,34 @@
           <!-- sort by price desc -->
           <button type="button" class="btn btn-dark" (click)="priceSortDesc()">Price <i
               class="fa-solid fa-arrow-down-wide-short"></i></button>
-
-          <!-- filter by categories -->
-          <!-- <button type="button" class="btn btn-dark">Right</button> -->
         </div>
+
+        <!-- price range -->
+        <div class="my-3">
+          <form class="col-sm-3 mx-auto" (ngSubmit)="priceRange()" [formGroup]="priceForm" autocomplete="off">
+            <div class="my-3">
+              <input type="number" class="form-control" placeholder="Min price" aria-label="Min price" formControlName="minPrice">
+            </div>
+            <div class="my-3">
+              <input type="number" class="form-control" placeholder="Max price" aria-label="Max price" formControlName="maxPrice">
+            </div>
+            <div class="my-3">
+              <button class="btn btn-sm btn-secondary fw-bold" type="submit">Get price range</button>
+            </div>
+          </form>
+          <!-- Error Message -->
+          <div class="errorMessage my-3" *ngIf="errorState">
+            <p class="text-danger fw-bold">{{ errorMessagePrice }}</p>
+          </div>
+        </div>
+
+        <!-- END PRICE -->
+
+        <!-- filter by categories -->
+        <ul *ngFor="let c of categories">
+          <li class="btn btn-sm btn-outline-secondary">{{c}}</li>
+        </ul>
+
       </div>
       <!-- END FILTERS -->
 
@@ -59,7 +84,7 @@
               <div class="card-body">
                 <p class="card-title lead">{{p.name}}</p>
                 <p class="card-text badge bg-warning  text-dark fw-bold">{{p.category}}</p>
-                <p class="card-text text-muted small">{{p.description}}</p>
+                <p class="card-text text-muted small">{{p.description | slice:0:45 }} ...</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <!-- view product method with product id as parameter -->

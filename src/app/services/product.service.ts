@@ -55,6 +55,11 @@ export class ProductService {
     return this.http.get<any>("http://localhost:3000/products?_sort=price&_order=desc");
   }
 
+  // filter by price range
+  priceRange(min: number, max: number){
+    return this.http.get<any>(`http://localhost:3000/products?_sort=price&_order=asc&price_gte=${min}&price_lte=${max}`);
+  }
+
   // filter by category
   filterCategory(category: any){
     return this.http.get<any>("http://localhost:3000/products?category=" + category);
