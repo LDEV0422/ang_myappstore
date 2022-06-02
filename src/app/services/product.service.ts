@@ -62,7 +62,12 @@ export class ProductService {
 
   // filter by category
   filterCategory(category: any){
-    return this.http.get<any>("http://localhost:3000/products?category=" + category);
+    return this.http.get<any>(`http://localhost:3000/products?category=${category}`);
+  }
+
+  // paginate Products
+  paginateProducts(page:number, limit:number){
+    return this.http.get<any>(`http://localhost:3000/products?_page=${page}&_limit=${limit}`);
   }
 
 }

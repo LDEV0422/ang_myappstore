@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  // products array : get its data using the products() method  
+  // products 
   products: any;
   productData: any;
 
@@ -32,12 +32,23 @@ export class ProductsComponent implements OnInit {
 
   // categories filter
   categories!: string[];
+  selectedCategory:any;
+
+  // PAGINATION
+  page!: number;
+  // set limit of products by page
+  paginationLimit: number = 3;
+  // to calculate total of pages
+  totalPages: any;
+  
 
   // inject service to use its methods
   constructor(private productService: ProductService, private categoriesService: CategoriesService, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.getAllProducts()
+    this.getAllProducts();
+    this.getAllCategories();
+    this.paginateProducts(this.page);
   }
 
   // ********** CRUD ********** //
@@ -47,9 +58,20 @@ export class ProductsComponent implements OnInit {
       this.products = data;
       // console.log(this.products)
     })
+
+    // TODO: handle error
   }
 
-// ********** FILTERS ********** //
+  getAllCategories() {
+    this.categoriesService.getCategories().subscribe(data => {
+      this.categories = data;
+      // console.log(this.products)
+    })
+
+    // TODO: handle error
+  }
+
+  // ********** FILTERS ********** //
   // search products 
   searchProduct() {
 
@@ -63,7 +85,7 @@ export class ProductsComponent implements OnInit {
       this.getAllProducts();
 
       return;
-    }else{
+    } else {
       this.errorState = false;
     }
 
@@ -76,7 +98,7 @@ export class ProductsComponent implements OnInit {
           if (response.length == 0) {
             this.errorState = true;
             this.errorMessageSearch = "No product found";
-          } else{
+          } else {
             this.errorState = false;
           }
         },
@@ -89,32 +111,32 @@ export class ProductsComponent implements OnInit {
 
 
   // sort products by price (asc)
-  priceSortAsc(){
-    this.productService.priceSortAsc().subscribe( response => {
+  priceSortAsc() {
+    this.productService.priceSortAsc().subscribe(response => {
       this.products = response;
     })
   }
 
   // sort products by price (asc)
-  priceSortDesc(){
-    this.productService.priceSortDesc().subscribe( response => {
+  priceSortDesc() {
+    this.productService.priceSortDesc().subscribe(response => {
       this.products = response;
     })
   }
 
   // price range
-  priceRange(){
+  priceRange() {
     // if form is empty
     if (this.priceForm.invalid) {
 
-      this.errorState = true;
-      this.errorMessagePrice = "Please indicate a price range";
+      // this.errorState = true;
+      // this.errorMessagePrice = "Please indicate a price range";
 
       // show all products if form is empty
       this.getAllProducts();
 
       return;
-    }else{
+    } else {
       this.errorState = false;
     }
 
@@ -123,11 +145,11 @@ export class ProductsComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.products = response;
-          
+
           if (response.length == 0) {
             this.errorState = true;
             this.errorMessagePrice = "No product found in this price range";
-          } else{
+          } else {
             this.errorState = false;
           }
         },
@@ -138,28 +160,44 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-  filterCategory(){
-    this.categoriesService.getCategories()
-    .subscribe({
-      next: (response) => {
-        this.categories = response;
-        console.log(this.categories);
-        
-        // if (response.length == 0) {
-        //   this.errorState = true;
-        //   this.errorMessagePrice = "No product found in this price range";
-        // } else{
-        //   this.errorState = false;
-        // }
-      },
-      error: () => {
-        // this.errorState = true;
-        // this.errorMessagePrice = "No product found";
-      }
+
+  filterCategories(category: any) {
+    this.selectedCategory = category;
+
+    this.productService.filterCategory(this.selectedCategory)
+    .subscribe((response) => {
+      this.products = response;  
     })
+    
   }
 
-// ********** END FILTERS ********** //
+  // ********** END FILTERS ********** //
 
+// ********** PAGINATION ********** //
+paginateProducts(page:any){
+  // page = page + 1;
+  // console.log("page number " + page);
+  let productsAll: any;
 
+  this.productService.getProducts().subscribe((response) => {
+    productsAll = response;
+
+    this.productService.paginateProducts(page, this.paginationLimit)
+    .subscribe((response) => {
+      this.products = response;
+  
+      console.log("page number " + page);
+      console.log("products length " + productsAll.length);
+      let maxPage = Math.ceil(productsAll.length / this.paginationLimit);
+      console.log(maxPage);
+      
+      this.totalPages = new Array<number>(maxPage);
+      console.log("total pages " + this.totalPages.length);
+      
+    });
+
+  })
+ 
+}
+// ********** END PAGINATION ********** //
 }
