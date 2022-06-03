@@ -110,8 +110,8 @@
 
       <!-- ********** PAGINATION ********** -->
 
-        <ul class="" *ngFor="let tp of totalPages, let i = index">
-          <li class="badge bg-dark" (click)="paginateProducts(tp)">{{ i + 1 }}</li>
+        <ul class="d-flex justify-content-center m-4">
+          <li *ngFor="let tp of totalPages, let i = index" class="badge bg-dark" (click)="paginateProducts(i+1)">{{ i + 1 }}</li>
         </ul>
 
       <!-- ********** END PAGINATION ********** -->
