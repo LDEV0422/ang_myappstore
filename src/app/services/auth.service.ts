@@ -13,6 +13,10 @@ export class AuthService {
   // public observable to register the subscribers (based on the BS)
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
+  private _isLoggedOut$ = new BehaviorSubject<boolean>(false);
+  isLoggedOut$ = this._isLoggedOut$.asObservable();
+
+
   // token management
   token: any;
   expToken: any;
@@ -21,23 +25,30 @@ export class AuthService {
   // logged user management
   userLogged: any;
 
+
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
 
-    // maintain state notwithstanding reload
-    this.token = localStorage.getItem('Current_auth');
+    if (localStorage.length !== 0) {
+         // maintain state notwithstanding reload
+    this.token = localStorage.getItem('current_auth');
 
     // decode token to get user's role
     this.getTokenDecoded();
 
-
+    // role management
     // if (this.userLogged.roles == "ADMIN") {
 
     // }
 
     // convert _isLoggedIn$ to a boolean to maintain state
     this._isLoggedIn$.next(!!this.token);
-    // console.log(this._isLoggedIn$);
+
+    }else {
+      this._isLoggedOut$.next(true);
+      console.log("user out");
+    }
   }
+
 
   // get users from db
   getUsers() {
@@ -52,10 +63,16 @@ export class AuthService {
   loggedIn(userToken: any) {
     // BehaviorSubject which will be responsible to keep the state of the logged in user (logged in = true, false otherwise)
     this._isLoggedIn$.next(true);
+    // this._isLoggedOut$.next(true);
 
     // store token in localStorage
-    let userAuth = "Current_auth";
+    let userAuth = "current_auth";
     localStorage.setItem(userAuth, userToken);
+  }
+
+  logOutUser(){
+    this._isLoggedIn$.next(false);
+    localStorage.clear();
   }
 
   // decode token method
