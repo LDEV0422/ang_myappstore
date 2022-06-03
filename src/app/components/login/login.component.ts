@@ -16,8 +16,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl(null, Validators.required)
   });
 
-  // to get all users
+  // users
   users: any;
+  loginUser: any;
 
   // error message
   errorState: boolean = false;
@@ -49,28 +50,33 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // check username and password
-    for (let i = 0; i < this.users.length; i++) {
-      // console.log(this.users[i]);
 
-      // TODO: check only username or email (unique) instead of all users
-      if (this.form.get('email')?.value === this.users[i].email && this.form.get('password')?.value === this.users[i].password) {
+    // check mail
+    this.authService.getUserCredentials(this.form.get('email')?.value, this.form.get('password')?.value)
+      .subscribe({
+        next: (response) => {
+          this.loginUser = response;
 
-        // if user exists TODO: erase this
-        // console.log("User exists: " + this.users[i].email + " with token " + this.users[i].token);
+          if (this.loginUser.length == 0) {
+            console.log("credentials are incorrect");
+            this.errorState = true;
+            this.errorMessage = "This combination of email and password is unknown"
+          } else {
+            // to access token property
+            for (let i = 0; i < this.loginUser.length; i++) {
+              // authService method = loggedIn state + store user token in localStorage
+              this.authService.loggedIn(this.users[i].token);
+            }
 
-        // authService method = loggedIn state + store user token in localStorage
-        this.authService.loggedIn(this.users[i].username, this.users[i].token);
-
-        // redirect to dashboard
-        this.router.navigate(['/dashboard']);
-
-      } else {
-        this.errorState = true;
-        this.errorMessage = "This user does not exist"
-      }
-    }
-
+            // redirect to dashboard
+            this.router.navigate(['/dashboard']);
+          }
+        },
+        error: () => {
+          this.errorState = true;
+          this.errorMessage = "An error occurred during login, please retry"
+        }
+      })
   }
 
 }

@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
 
-    // TODO: put this in ngonit in user component (navbar) to have access to it all the time
+    
     // maintain state notwithstanding reload
 
     // TODO: 1 token for all users ?
@@ -31,14 +31,18 @@ export class AuthService {
     return this.http.get<any>("http://localhost:3000/users");
   }
 
+  getUserCredentials(userEmail:any, userPW:any) {
+    return this.http.get<any>(`http://localhost:3000/users?email=${userEmail}&password=${userPW}`);
+  }
+
   // loggedIn method = logged state + store user token in localStorage
-  loggedIn(userName: any, userToken: any) {
+  loggedIn(userToken: any) {
 
     // BehaviorSubject which will be responsible to keep the state of the logged in user (logged in = true, false otherwise)
     this._isLoggedIn$.next(true);
 
     // store token in localStorage
-    let userAuth = `${userName}_auth`;
+    let userAuth = "Current_auth";
     localStorage.setItem(userAuth, userToken);
 
   }

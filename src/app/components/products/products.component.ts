@@ -174,6 +174,7 @@ export class ProductsComponent implements OnInit {
   // ********** END FILTERS ********** //
 
 // ********** PAGINATION ********** //
+// TODO: PAGINATE METHOD FOR EVERY FILTER
 paginateProducts(page:any){
   // page = page + 1;
   // console.log("page number " + page);
@@ -185,17 +186,9 @@ paginateProducts(page:any){
     this.productService.paginateProducts(page, this.paginationLimit)
     .subscribe((response) => {
       this.products = response;
-  
-      console.log("page number " + page);
-      console.log("products length " + productsAll.length);
       let maxPage = Math.ceil(productsAll.length / this.paginationLimit);
-      console.log(maxPage);
-      
       this.totalPages = new Array<number>(maxPage);
-      console.log("total pages " + this.totalPages.length);
-      
     });
-
   })
  
 }
