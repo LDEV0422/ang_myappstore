@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -32,7 +32,7 @@ export class ProductsComponent implements OnInit {
 
   // categories filter
   categories!: string[];
-  selectedCategory:any;
+  selectedCategory: any;
 
   // PAGINATION
   page!: number;
@@ -40,7 +40,7 @@ export class ProductsComponent implements OnInit {
   paginationLimit: number = 3;
   // to calculate total of pages
   totalPages: any;
-  
+
 
   // inject service to use its methods
   constructor(private productService: ProductService, private categoriesService: CategoriesService, public authService: AuthService) { }
@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit {
     this.paginateProducts(this.page);
   }
 
-  // ********** CRUD ********** //
+  // ********** DISPLAY ITEMS ********** //
 
   getAllProducts() {
     this.productService.getProducts().subscribe(data => {
@@ -70,6 +70,10 @@ export class ProductsComponent implements OnInit {
 
     // TODO: handle error
   }
+
+    // ********** END DISPLAY ITEMS ********** //
+
+
 
   // ********** FILTERS ********** //
   // search products 
@@ -108,7 +112,6 @@ export class ProductsComponent implements OnInit {
         }
       })
   }
-
 
   // sort products by price (asc)
   priceSortAsc() {
@@ -160,37 +163,38 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-
+  // filter by category
   filterCategories(category: any) {
     this.selectedCategory = category;
 
     this.productService.filterCategory(this.selectedCategory)
-    .subscribe((response) => {
-      this.products = response;  
-    })
-    
+      .subscribe((response) => {
+        this.products = response;
+      })
+
   }
 
   // ********** END FILTERS ********** //
 
-// ********** PAGINATION ********** //
-// TODO: PAGINATE METHOD FOR EVERY FILTER
-paginateProducts(page:any){
-  // page = page + 1;
-  // console.log("page number " + page);
-  let productsAll: any;
+  // ********** PAGINATION ********** //
+  // TODO: PAGINATE METHOD FOR EVERY FILTER
+  paginateProducts(page: any) {
+    // page = page + 1;
+    // console.log("page number " + page);
+    let productsAll: any;
 
-  this.productService.getProducts().subscribe((response) => {
-    productsAll = response;
+    this.productService.getProducts().subscribe((response) => {
+      productsAll = response;
 
-    this.productService.paginateProducts(page, this.paginationLimit)
-    .subscribe((response) => {
-      this.products = response;
-      let maxPage = Math.ceil(productsAll.length / this.paginationLimit);
-      this.totalPages = new Array<number>(maxPage);
-    });
-  })
- 
-}
-// ********** END PAGINATION ********** //
+      this.productService.paginateProducts(page, this.paginationLimit)
+        .subscribe((response) => {
+          this.products = response;
+          let maxPage = Math.ceil(productsAll.length / this.paginationLimit);
+          this.totalPages = new Array<number>(maxPage);
+        });
+    })
+
+  }
+  // ********** END PAGINATION ********** //
+
 }
