@@ -15,12 +15,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
 
-    
     // maintain state notwithstanding reload
+    const token = localStorage.getItem('Current_auth');
 
-    // TODO: 1 token for all users ?
-    const token = localStorage.getItem('Tybalt_auth');
-
+    // decode token to make sure token that we get from lS corresponds to current user's token
+    
     // TODO: decode token to check if token corresponds to user (auth zero ?)
     this._isLoggedIn$.next(!!token);
     // console.log(this._isLoggedIn$);
@@ -37,15 +36,12 @@ export class AuthService {
 
   // loggedIn method = logged state + store user token in localStorage
   loggedIn(userToken: any) {
-
     // BehaviorSubject which will be responsible to keep the state of the logged in user (logged in = true, false otherwise)
     this._isLoggedIn$.next(true);
 
     // store token in localStorage
     let userAuth = "Current_auth";
     localStorage.setItem(userAuth, userToken);
-
   }
-
 
 }
