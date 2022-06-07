@@ -27,37 +27,52 @@ export class AuthService {
 
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+    // TODO: logged in state / logged out without page reload (user is logged but pb in header and local storage)
 
-    if (localStorage.length !== 0) {
-         // maintain state notwithstanding reload
-    this.token = localStorage.getItem('current_auth');
+    // if (localStorage.length !== 0) {
+      // maintain state notwithstanding reload
+      this.token = localStorage.getItem('current_auth');
 
-    // decode token to get user's role
-    this.getTokenDecoded();
+      // decode token to get user's role
 
-    // role management
-    // if (this.userLogged.roles == "ADMIN") {
+      // TODO: role management
+      
+      
+      // convert _isLoggedIn$ to a boolean to maintain state
+      this._isLoggedIn$.next(!!this.token);
 
+    // } else {
+      
+    //   this._isLoggedOut$.next(true);
+    //   console.log("user out");
     // }
-
-    // convert _isLoggedIn$ to a boolean to maintain state
-    this._isLoggedIn$.next(!!this.token);
-
-    }else {
-      this._isLoggedOut$.next(true);
-      console.log("user out");
+    if (this.token) {
+      this.getTokenDecoded();
+      
+    } else {
+       this._isLoggedOut$.next(true);
+      
     }
   }
 
-
-  // get users from db
+  // ********** HTTP METHODS ********** //
+  // get all users from db
   getUsers() {
     return this.http.get<any>("http://localhost:3000/users");
   }
 
+  // check user on login
   getUserCredentials(userEmail: any, userPW: any) {
     return this.http.get<any>(`http://localhost:3000/users?email=${userEmail}&password=${userPW}`);
   }
+
+  // register new user
+  registerUser(user: any){
+    return this.http.post<any>("http://localhost:3000/users/", user);
+  }
+
+  // ********** END HTTP METHODS ********** //
+
 
   // loggedIn method = logged state + store user token in localStorage
   loggedIn(userToken: any) {
@@ -70,12 +85,12 @@ export class AuthService {
     localStorage.setItem(userAuth, userToken);
   }
 
-  logOutUser(){
-    this._isLoggedIn$.next(false);
+  logOutUser() {
     localStorage.clear();
+    this._isLoggedIn$.next(false);
   }
 
-  // decode token method
+  // // decode token method
   getTokenDecoded() {
     this.expToken = this.token;
     // console.log(this.jwtHelper.decodeToken(this.expToken));

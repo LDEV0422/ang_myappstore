@@ -1,0 +1,90 @@
+<div class="container my-5">
+  <h1 class="text-center">Register</h1>
+  <!-- Error Message -->
+  <div class="errorMessage mb-3" *ngIf="errorMessage">
+    <p class="text-danger fw-bold">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Registration Message -->
+  <div class="registerMessage mb-3" *ngIf="registerMessage">
+    <p class="text-success fw-bold">{{ registerMessage }}</p>
+  </div>
+
+  <button type="button" *ngIf="newUser" class="btn btn-warning">Go to login page</button>
+
+  <form (ngSubmit)="submitRegisterForm()" [formGroup]="registerForm" autocomplete="off">
+
+    <!-- Username -->
+    <div class="form-group mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username"
+        formControlName="username">
+
+      <!-- form validator -->
+      <div>
+        <div>Username is required</div>
+        <div>
+          Username must be at least 4 characters
+        </div>
+        <div>
+          Username must not exceed 10 characters
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
+        formControlName="email">
+
+      <!-- form validator -->
+      <div >
+        <div >Email is required</div>
+        <div >Email is invalid</div>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" formControlName="password">
+
+      <!-- form validator -->
+      <div>
+        <div>Password is required</div>
+        <div>
+          Password must be at least 6 characters
+        </div>
+        <div>
+          Username must not exceed 15 characters
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRM Password -->
+    <div class="form-group mb-3">
+      <label for="confirmPassword" class="form-label">Confirm password</label>
+      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+        formControlName="confirmPassword">
+
+      <!-- form validator -->
+      <div>
+        <div>
+          Confirm Password is required
+        </div>
+        <div>
+          Confirm Password does not match
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-warning">Register <i class="fa-solid fa-rocket"></i></button>
+      <button type="button" (click)="onReset()" class="btn btn-dark float-end">
+        Reset form
+      </button>
+    </div>
+
+  </form>
+</div>

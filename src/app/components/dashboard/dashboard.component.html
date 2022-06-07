@@ -1,1 +1,30 @@
-<p>dashboard works!</p>
+<div class="container my-5 text-center">
+  <h1 *ngIf="currentUser">Welcome {{ currentUser.username }}!</h1>
+  <!-- TODO: FINISH DASHBOARD PAGE -->
+  <h3>Soon : dashboard with material UI
+    <a href="https://www.youtube.com/watch?v=jGbP620NahE">YT tuto</a>
+  </h3>
+
+  <!-- Error Message -->
+  <div class="errorMessage my-3" *ngIf="errorState">
+    <p class="text-danger fw-bold">{{ errorMessage }}</p>
+  </div>
+
+  <!-- show last 3 added products (users) -->
+  <h6 class="fw-bold" *ngIf="currentUser">Products added by {{ currentUser.username }}</h6>
+
+
+  <!-- IF ADMIN show last 3 added products (all users) -->
+  <h6 class="fw-bold">Products added recently (recent products)</h6>
+
+  <!-- Link to products page -->
+  <a class="btn btn-sm btn-warning fw-bold" routerLink="/products">See all products</a>
+
+  <!-- USER CRUD (ADMIN HAS TO CREATE TOKEN AFTER USER REGISTRATION )-->
+  <h6 *ngIf="allUsersData">User stats : there are currently <strong>{{ allUsersData.length }}</strong> users registered
+  </h6>
+  
+  <!-- if new user registered and doesn't have a token, show this -->
+  <!-- <p class="fw-bold text-danger">Token request for new user : </p> -->
+
+</div>

@@ -10,9 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-
+  // login form
   form = new FormGroup({
-    email: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required)
   });
 
@@ -56,18 +56,14 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.loginUser = response;
-
+          
           if (this.loginUser.length == 0) {
             console.log("credentials are incorrect");
             this.errorState = true;
             this.errorMessage = "This combination of email and password is unknown"
           } else {
-            // to access token property
-            for (let i = 0; i < this.loginUser.length; i++) {
-              // authService method = loggedIn state + store user token in localStorage
-              this.authService.loggedIn(this.users[i].token);
-            }
-
+            // to access token property (users is an array of object, use index to access object properties(0 here because you only get 1 user in array))
+            this.authService.loggedIn(this.loginUser[0].token);
             // redirect to dashboard
             this.router.navigate(['/dashboard']);
           }
