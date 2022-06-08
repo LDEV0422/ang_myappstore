@@ -5,12 +5,12 @@
 - REST API mock [json-server](https://www.npmjs.com/package/json-server)
 
 - TODO: 
-improve methods
-edit method
-form validation
-filters (price, category)
-add availability property with patch
-create product page (instead of toggling products display)
-add to cart method (token)
-authentification
-image handling
+- [authentication state](https://www.youtube.com/watch?v=w6i79btoig8)
+- notifications instead of alert
+- form validation for registration
+- pagination in filters
+
+- TODO: ++
+- add availability property with patch
+- add to cart method (token)
+- image handling
