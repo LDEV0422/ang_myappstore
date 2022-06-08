@@ -6,6 +6,7 @@
 
 - TODO: 
 - [authentication state](https://www.youtube.com/watch?v=w6i79btoig8)
+- dashboard
 - notifications instead of alert
 - form validation for registration
 - pagination in filters
