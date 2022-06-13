@@ -5,10 +5,10 @@
 - REST API mock [json-server](https://www.npmjs.com/package/json-server)
 
 - TODO: 
-- [authentication state](https://www.youtube.com/watch?v=w6i79btoig8)
+- finish authentication state
 - dashboard
-- notifications instead of alert
-- form validation for registration
+- notifications
+- registration validation
 - pagination in filters
 
 - TODO: ++
