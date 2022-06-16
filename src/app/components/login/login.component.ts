@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.getAllUsers();
   }
 
+  // N'est plus nécessaire
   getAllUsers() {
     this.authService
       .getUsers()
