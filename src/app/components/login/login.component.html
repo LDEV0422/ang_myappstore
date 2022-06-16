@@ -1,9 +1,11 @@
 <div class="container my-5">
   <h1 class="text-center">Login</h1>
+
   <!-- Error Message -->
   <div class="errorMessage mb-3" *ngIf="errorMessage">
     <p class="text-danger fw-bold">{{ errorMessage }}</p>
   </div>
+  
   <form (ngSubmit)="submitLoginForm()" [formGroup]="form" autocomplete="off">
 
     <!-- Email -->
