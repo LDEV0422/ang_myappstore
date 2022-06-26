@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
 
         
     //     // stay on login page and show message (user can't login before token generation)
-    //     this.registerState = false;
+    //     this.registerState = true;
     //     this.registerMessage = "Registration was a success! Your account will be validated very soon, go to login page to check validation.";
     //     // add roles (= user) + empty "" for token
     //   },
