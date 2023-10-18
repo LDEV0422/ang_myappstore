@@ -9,13 +9,13 @@ Mock store using Angular and json server.
 
 ## Preview
 Home page
-![preview img](https://github.com/LSS-commits/ldev_portfolio/blob/main/myappstore_1.png)
+![preview img](https://github.com/LDEV0422/ang_myappstore/blob/main/myappstore_1.png)
 
 Products list
-![preview img](https://github.com/LSS-commits/ldev_portfolio/blob/main/myappstore_3.png)
+![preview img](https://github.com/LDEV0422/ang_myappstore/blob/main/myappstore_3.png)
 
 Product page
-![preview img](https://github.com/LSS-commits/ldev_portfolio/blob/main/myappstore_5.png)
+![preview img](https://github.com/LDEV0422/ang_myappstore/blob/main/myappstore_5.png)
 
 
 ### Usage
