@@ -6,6 +6,18 @@ Mock store using Angular and json server.
 
 - REST API mock [json-server](https://www.npmjs.com/package/json-server)
 
+
+## Preview
+Home page
+![preview img](https://github.com/LSS-commits/ldev_portfolio/blob/main/myappstore_1.png)
+
+Products list
+![preview img](https://github.com/LSS-commits/ldev_portfolio/blob/main/myappstore_3.png)
+
+Product page
+![preview img](https://github.com/LSS-commits/ldev_portfolio/blob/main/myappstore_5.png)
+
+
 ### Usage
 To run the application :
 => json-server --watch db.json
